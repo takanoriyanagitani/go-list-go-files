@@ -1,0 +1,50 @@
+version: "2"
+
+linters:
+
+  default: all
+
+  disable:
+    - wsl
+    - wsl_v5
+    - ireturn
+    - nlreturn
+    - revive
+    - exhaustruct
+    - wrapcheck
+    - nonamedreturns
+
+  settings:
+
+    depguard:
+      rules:
+        main:
+          files:
+            - $all
+          allow:
+            - $gostd
+            - golang.org/x/tools/go/packages
+            - github.com/takanoriyanagitani/go-list-go-files
+          deny:
+            - pkg: unsafe
+
+    nolintlint:
+      require-specific: true
+      require-explanation: true
+      allow-unused: false
+      allow-no-explanation:
+        - gochecknoglobals
+
+    govet:
+      enable-all: true
+      disable:
+      - fieldalignment
+
+    staticcheck:
+      checks:
+      - all
+      - -QF1011
+      - -QF1008
+      - -ST1017
+      - -ST1023
+      - -ST1000
